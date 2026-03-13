@@ -73,9 +73,9 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen flex bg-gray-100">
+    <div className="min-h-screen flex flex-col md:flex-row bg-gray-100">
       <Sidebar active={active} setActive={setActive} logout={logout} />
-      <main className="flex-1 p-8 relative">
+      <main className="flex-1 p-4 md:p-8 relative">
         <Header />
         {error && <div className="mb-4 bg-red-100 text-red-700 p-3 rounded">{error}</div>}
         <Content

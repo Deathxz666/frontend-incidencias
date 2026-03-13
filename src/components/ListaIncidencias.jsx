@@ -30,8 +30,8 @@ function ListaIncidencias({
   const [searchTerm, setSearchTerm] = useState(query.search || "");
 
   return (
-    <div className="bg-white mt-8 p-6 rounded-xl shadow">
-      <h2 className="text-xl font-bold mb-4">Incidencias Registradas</h2>
+    <div className="bg-white mt-8 p-4 md:p-6 rounded-xl shadow">
+      <h2 className="text-lg md:text-xl font-bold mb-4">Incidencias Registradas</h2>
 
       <div className="flex flex-wrap gap-3 mb-4 items-end">
         <div>
@@ -40,7 +40,7 @@ function ListaIncidencias({
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Titulo, descripcion, correo, nombre"
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
           />
         </div>
 
@@ -53,7 +53,7 @@ function ListaIncidencias({
           <select
             value={query.estado || ""}
             onChange={(e) => onEstadoFilter(e.target.value)}
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
           >
             <option value="">Todos</option>
             <option value="pendiente">pendiente</option>
@@ -67,7 +67,7 @@ function ListaIncidencias({
           <select
             value={query.clasificacion || ""}
             onChange={(e) => onClasificacionFilter(e.target.value)}
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
           >
             <option value="">Todas</option>
             <option value="incidencia">Incidencia</option>
@@ -80,7 +80,7 @@ function ListaIncidencias({
           <select
             value={query.tipo_mantenimiento || ""}
             onChange={(e) => onTipoMantenimientoFilter(e.target.value)}
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
           >
             <option value="">Todos</option>
             <option value="correctivo">Correctivo</option>

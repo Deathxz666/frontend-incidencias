@@ -60,9 +60,9 @@ function Register() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-8">
-        <h2 className="text-3xl font-bold text-center mb-2">Crear cuenta</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500 px-4 py-8">
+      <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-6 md:p-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Crear cuenta</h2>
         <p className="text-center text-gray-500 mb-6">Registrate para usar el sistema</p>
 
         {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">{error}</div>}

@@ -13,22 +13,22 @@ function EstadoBadge({ estado, color }) {
 
 function Reportes({ reportes, reportRange, setReportRange, onRunReport, onDownloadPdf }) {
   return (
-    <div className="bg-white p-6 rounded-xl shadow">
-      <h2 className="text-2xl font-bold mb-4">Reportes de Incidencias</h2>
+    <div className="bg-white p-4 md:p-6 rounded-xl shadow">
+      <h2 className="text-xl md:text-2xl font-bold mb-4">Reportes de Incidencias</h2>
 
       <div className="mb-3 text-sm text-gray-700">
         Responsable del reporte: <strong>{reportes?.responsable?.nombre_completo || "-"}</strong>
         {reportes?.responsable?.email ? ` (${reportes.responsable.email})` : ""}
       </div>
 
-      <div className="flex gap-3 items-end mb-6">
+      <div className="flex flex-wrap gap-3 items-end mb-6">
         <div>
           <label className="text-xs text-gray-600 block mb-1">Desde</label>
           <input
             type="date"
             value={reportRange.from}
             onChange={(e) => setReportRange((prev) => ({ ...prev, from: e.target.value }))}
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
           />
         </div>
 
@@ -38,14 +38,14 @@ function Reportes({ reportes, reportRange, setReportRange, onRunReport, onDownlo
             type="date"
             value={reportRange.to}
             onChange={(e) => setReportRange((prev) => ({ ...prev, to: e.target.value }))}
-            className="border rounded px-3 py-2"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
           />
         </div>
 
-        <button onClick={onRunReport} className="bg-indigo-600 text-white px-4 py-2 rounded">
+        <button onClick={onRunReport} className="bg-indigo-600 text-white px-4 py-2 rounded w-full sm:w-auto">
           Ejecutar reporte
         </button>
-        <button onClick={onDownloadPdf} className="bg-emerald-600 text-white px-4 py-2 rounded">
+        <button onClick={onDownloadPdf} className="bg-emerald-600 text-white px-4 py-2 rounded w-full sm:w-auto">
           Descargar PDF
         </button>
       </div>

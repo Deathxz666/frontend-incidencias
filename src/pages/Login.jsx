@@ -42,9 +42,9 @@ function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500">
-      <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-8">
-        <h2 className="text-3xl font-bold text-center mb-2">Sistema de Incidencias</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500 px-4 py-8">
+      <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-6 md:p-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-2">Sistema de Incidencias</h2>
         <p className="text-center text-gray-500 mb-6">Inicia sesion para continuar</p>
 
         {error && (

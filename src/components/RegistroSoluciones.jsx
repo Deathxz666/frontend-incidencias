@@ -13,10 +13,10 @@ function EstadoBadge({ estado }) {
 
 function RegistroSoluciones({ incidencias, meta, onSearch, onPageChange }) {
   return (
-    <div className="bg-white p-6 rounded-xl shadow">
+    <div className="bg-white p-4 md:p-6 rounded-xl shadow">
       <div className="flex flex-wrap justify-between items-end gap-3 mb-4">
-        <h2 className="text-2xl font-bold">Registro de Soluciones</h2>
-        <button onClick={onSearch} className="bg-indigo-600 text-white px-4 py-2 rounded">
+        <h2 className="text-xl md:text-2xl font-bold">Registro de Soluciones</h2>
+        <button onClick={onSearch} className="bg-indigo-600 text-white px-4 py-2 rounded w-full sm:w-auto">
           Actualizar
         </button>
       </div>

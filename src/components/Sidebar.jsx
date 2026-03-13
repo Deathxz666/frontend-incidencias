@@ -18,23 +18,23 @@ function Sidebar({ setActive, active, logout }) {
   ];
 
   return (
-    <aside className="w-64 bg-indigo-700 text-white flex flex-col">
-      <div className="p-6 text-2xl font-bold border-b border-indigo-500">Incidencias</div>
+    <aside className="w-full md:w-64 bg-indigo-700 text-white flex flex-col md:min-h-screen">
+      <div className="p-4 md:p-6 text-xl md:text-2xl font-bold border-b border-indigo-500">Incidencias</div>
 
-      <nav className="flex-1 p-4 space-y-2">
+      <nav className="flex-1 p-3 md:p-4 space-y-2">
         {menuItems.map((item) => (
           <button
             key={item.key}
             onClick={() => setActive(item.key)}
-            className={`w-full text-left px-4 py-2 rounded ${active === item.key ? "bg-indigo-500" : "hover:bg-indigo-600"}`}
+            className={`w-full text-left px-4 py-2 rounded text-sm md:text-base ${active === item.key ? "bg-indigo-500" : "hover:bg-indigo-600"}`}
           >
             {item.label}
           </button>
         ))}
       </nav>
 
-      <div className="p-4 border-t border-indigo-500">
-        <button onClick={logout} className="w-full bg-red-500 hover:bg-red-600 py-2 rounded">
+      <div className="p-3 md:p-4 border-t border-indigo-500">
+        <button onClick={logout} className="w-full bg-red-500 hover:bg-red-600 py-2 rounded text-sm md:text-base">
           Cerrar sesion
         </button>
       </div>

@@ -64,8 +64,8 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
   };
 
   return (
-    <div className="bg-white p-8 rounded-xl shadow max-w-4xl">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+    <div className="bg-white p-4 md:p-8 rounded-xl shadow max-w-4xl w-full">
+      <h2 className="text-xl md:text-2xl font-bold mb-6 text-gray-800">
         {isEdit ? "Editar Incidencia" : "Registrar Nueva Incidencia"}
       </h2>
 
@@ -128,7 +128,7 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
           </div>
         )}
 
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <button disabled={loading} className="bg-indigo-600 text-white px-6 py-2 rounded disabled:opacity-50">
             {loading ? "Guardando..." : isEdit ? "Guardar cambios" : "Registrar"}
           </button>
