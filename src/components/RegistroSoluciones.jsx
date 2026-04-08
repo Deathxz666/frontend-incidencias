@@ -11,6 +11,15 @@ function EstadoBadge({ estado }) {
   );
 }
 
+function getFullName(usuario) {
+  if (!usuario) return "-";
+  const fullName = [usuario.nombres, usuario.apellido_paterno, usuario.apellido_materno]
+    .filter(Boolean)
+    .join(" ")
+    .trim();
+  return fullName || usuario.email || "-";
+}
+
 function RegistroSoluciones({ incidencias, meta, onSearch, onPageChange }) {
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl shadow">
@@ -46,7 +55,7 @@ function RegistroSoluciones({ incidencias, meta, onSearch, onPageChange }) {
                   <td className="p-2">{inc.clasificacion || "-"}</td>
                   <td className="p-2">{inc.tipo_mantenimiento || "-"}</td>
                   <td className="p-2"><EstadoBadge estado={inc.estado} /></td>
-                  <td className="p-2">{inc.usuario?.email || "-"}</td>
+                  <td className="p-2">{getFullName(inc.usuario)}</td>
                   <td className="p-2">{inc.descripcion_solucion || "-"}</td>
                   <td className="p-2">{inc.fecha_actualizacion ? new Date(inc.fecha_actualizacion).toLocaleString() : "-"}</td>
                 </tr>

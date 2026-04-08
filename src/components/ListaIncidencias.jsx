@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+function getFullName(usuario) {
+  if (!usuario) return "-";
+  const fullName = [usuario.nombres, usuario.apellido_paterno, usuario.apellido_materno]
+    .filter(Boolean)
+    .join(" ")
+    .trim();
+  return fullName || usuario.email || "-";
+}
+
 function EstadoBadge({ estado }) {
   const color = estado?.color || "#6B7280";
   return (
@@ -39,7 +48,7 @@ function ListaIncidencias({
           <input
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Titulo, descripcion, correo, nombre"
+            placeholder="Titulo, descripcion, solucion, nombre"
             className="border rounded px-3 py-2 w-full sm:w-auto"
           />
         </div>
@@ -123,15 +132,42 @@ function ListaIncidencias({
                         <select
                           value={inc.estado?.nombre_estado || "pendiente"}
                           onChange={(e) => {
-                            const descripcion_solucion =
-                              e.target.value === "resuelta"
-                                ? window.prompt(
-                                    "Describe como se resolvio esta incidencia:",
-                                    inc.descripcion_solucion || "",
-                                  ) || ""
-                                : undefined;
+                            const estado = e.target.value;
+                            const payload = { estado };
 
-                            onEstadoChange(inc.id_incidencia, e.target.value, descripcion_solucion);
+                            if (estado === "en progreso") {
+                              const asignado = window.prompt(
+                                "Escribe el nombre de la persona asignada:",
+                                inc.asignado_a || "",
+                              );
+                              if (!asignado?.trim()) {
+                                return;
+                              }
+                              payload.asignado_a = asignado.trim();
+                            }
+
+                            if (estado === "resuelta") {
+                              const descripcion = window.prompt(
+                                "Describe como se resolvio esta incidencia:",
+                                inc.descripcion_solucion || "",
+                              );
+                              if (!descripcion?.trim()) {
+                                return;
+                              }
+
+                              const tiempo = window.prompt(
+                                "Cuanto tiempo tomo resolverla? (ej: 2h 30m)",
+                                inc.tiempo_solucion || "",
+                              );
+                              if (!tiempo?.trim()) {
+                                return;
+                              }
+
+                              payload.descripcion_solucion = descripcion.trim();
+                              payload.tiempo_solucion = tiempo.trim();
+                            }
+
+                            onEstadoChange(inc.id_incidencia, payload);
                           }}
                           className="border rounded px-2 py-1 block"
                         >
@@ -142,7 +178,7 @@ function ListaIncidencias({
                       )}
                     </div>
                   </td>
-                  <td className="p-2">{inc.usuario?.email || "-"}</td>
+                  <td className="p-2">{getFullName(inc.usuario)}</td>
                   <td className="p-2 max-w-sm">{inc.descripcion_solucion || "-"}</td>
                   <td className="p-2">{inc.fecha_creacion ? new Date(inc.fecha_creacion).toLocaleString() : "-"}</td>
                   <td className="p-2">{inc.fecha_actualizacion ? new Date(inc.fecha_actualizacion).toLocaleString() : "-"}</td>

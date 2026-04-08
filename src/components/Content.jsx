@@ -98,18 +98,14 @@ function Content({
     }
   };
 
-  const handleEstadoChange = async (idIncidencia, estado, descripcion_solucion) => {
+  const handleEstadoChange = async (idIncidencia, payload) => {
     try {
       setFormError("");
-      const body = { estado };
-      if (typeof descripcion_solucion === "string") {
-        body.descripcion_solucion = descripcion_solucion;
-      }
 
       const response = await fetch(`${API_BASE_URL}/incidencias/${idIncidencia}/estado`, {
         method: "PATCH",
         headers: apiHeaders,
-        body: JSON.stringify(body),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
