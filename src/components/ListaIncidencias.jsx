@@ -57,7 +57,7 @@ function ListaIncidencias({
           >
             <option value="">Todos</option>
             <option value="pendiente">pendiente</option>
-            <option value="en_progreso">en_progreso</option>
+            <option value="en progreso">en progreso</option>
             <option value="resuelta">resuelta</option>
           </select>
         </div>
@@ -136,7 +136,7 @@ function ListaIncidencias({
                           className="border rounded px-2 py-1 block"
                         >
                           <option value="pendiente">pendiente</option>
-                          <option value="en_progreso">en_progreso</option>
+                          <option value="en progreso">en progreso</option>
                           <option value="resuelta">resuelta</option>
                         </select>
                       )}

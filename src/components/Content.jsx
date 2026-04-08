@@ -28,6 +28,7 @@ function Content({
   const [editingIncidencia, setEditingIncidencia] = useState(null);
   const [reportes, setReportes] = useState(null);
   const [reportRange, setReportRange] = useState({ from: "", to: "" });
+  const [reportSearch, setReportSearch] = useState("");
   const [soluciones, setSoluciones] = useState([]);
   const [solucionesMeta, setSolucionesMeta] = useState({ page: 1, limit: 10, total: 0, totalPages: 1 });
 
@@ -163,6 +164,7 @@ function Content({
     const searchParams = new URLSearchParams();
     if (filters.from) searchParams.append("from", filters.from);
     if (filters.to) searchParams.append("to", filters.to);
+    if (reportSearch.trim()) searchParams.append("search", reportSearch.trim());
 
     try {
       setFormError("");
@@ -226,6 +228,7 @@ function Content({
     const searchParams = new URLSearchParams();
     if (filters.from) searchParams.append("from", filters.from);
     if (filters.to) searchParams.append("to", filters.to);
+    if (reportSearch.trim()) searchParams.append("search", reportSearch.trim());
 
     try {
       const response = await fetch(
@@ -347,6 +350,8 @@ function Content({
             reportes={reportes}
             reportRange={reportRange}
             setReportRange={setReportRange}
+            reportSearch={reportSearch}
+            setReportSearch={setReportSearch}
             onRunReport={() => loadReportes(reportRange)}
             onDownloadPdf={() => downloadReportesPdf(reportRange)}
           />

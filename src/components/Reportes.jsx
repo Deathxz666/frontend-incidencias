@@ -11,7 +11,15 @@ function EstadoBadge({ estado, color }) {
   );
 }
 
-function Reportes({ reportes, reportRange, setReportRange, onRunReport, onDownloadPdf }) {
+function Reportes({
+  reportes,
+  reportRange,
+  setReportRange,
+  reportSearch,
+  setReportSearch,
+  onRunReport,
+  onDownloadPdf,
+}) {
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl shadow">
       <h2 className="text-xl md:text-2xl font-bold mb-4">Reportes de Incidencias</h2>
@@ -22,6 +30,17 @@ function Reportes({ reportes, reportRange, setReportRange, onRunReport, onDownlo
       </div>
 
       <div className="flex flex-wrap gap-3 items-end mb-6">
+        <div>
+          <label className="text-xs text-gray-600 block mb-1">Buscar</label>
+          <input
+            type="text"
+            value={reportSearch}
+            onChange={(e) => setReportSearch(e.target.value)}
+            placeholder="Titulo, solucion o usuario"
+            className="border rounded px-3 py-2 w-full sm:w-auto"
+          />
+        </div>
+
         <div>
           <label className="text-xs text-gray-600 block mb-1">Desde</label>
           <input
@@ -113,8 +132,10 @@ function Reportes({ reportes, reportRange, setReportRange, onRunReport, onDownlo
                 <th className="text-left p-2">Clasificacion</th>
                 <th className="text-left p-2">Mantenimiento</th>
                 <th className="text-left p-2">Usuario</th>
+                <th className="text-left p-2">Asignado a</th>
                 <th className="text-left p-2">Estado</th>
                 <th className="text-left p-2">Solucion</th>
+                <th className="text-left p-2">Tiempo solucion</th>
                 <th className="text-left p-2">Creacion</th>
                 <th className="text-left p-2">Ultima edicion</th>
               </tr>
@@ -126,11 +147,13 @@ function Reportes({ reportes, reportRange, setReportRange, onRunReport, onDownlo
                   <td className="p-2">{item.descripcion}</td>
                   <td className="p-2">{item.clasificacion || "-"}</td>
                   <td className="p-2">{item.tipo_mantenimiento || "-"}</td>
-                  <td className="p-2">{item.usuario}</td>
+                  <td className="p-2">{item.usuario_nombre || item.usuario}</td>
+                  <td className="p-2">{item.asignado_a || "-"}</td>
                   <td className="p-2">
                     <EstadoBadge estado={item.estado} color={item.estado_color} />
                   </td>
                   <td className="p-2">{item.descripcion_solucion || "-"}</td>
+                  <td className="p-2">{item.tiempo_solucion || "-"}</td>
                   <td className="p-2">{item.fecha_creacion}</td>
                   <td className="p-2">{item.fecha_actualizacion}</td>
                 </tr>
