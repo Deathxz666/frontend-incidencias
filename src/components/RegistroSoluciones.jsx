@@ -43,7 +43,10 @@ function RegistroSoluciones({ incidencias, meta, onSearch, onPageChange }) {
                 <th className="text-left p-2">Mantenimiento</th>
                 <th className="text-left p-2">Estado</th>
                 <th className="text-left p-2">Usuario</th>
+                <th className="text-left p-2">Asignado a</th>
                 <th className="text-left p-2">Descripcion de solucion</th>
+                <th className="text-left p-2">Tiempo solucion</th>
+                <th className="text-left p-2">Creacion</th>
                 <th className="text-left p-2">Ultima edicion</th>
               </tr>
             </thead>
@@ -56,7 +59,10 @@ function RegistroSoluciones({ incidencias, meta, onSearch, onPageChange }) {
                   <td className="p-2">{inc.tipo_mantenimiento || "-"}</td>
                   <td className="p-2"><EstadoBadge estado={inc.estado} /></td>
                   <td className="p-2">{getFullName(inc.usuario)}</td>
+                  <td className="p-2">{inc.asignado_a || "-"}</td>
                   <td className="p-2">{inc.descripcion_solucion || "-"}</td>
+                  <td className="p-2">{inc.tiempo_solucion || "-"}</td>
+                  <td className="p-2">{inc.fecha_creacion ? new Date(inc.fecha_creacion).toLocaleString() : "-"}</td>
                   <td className="p-2">{inc.fecha_actualizacion ? new Date(inc.fecha_actualizacion).toLocaleString() : "-"}</td>
                 </tr>
               ))}

@@ -8,6 +8,8 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
       clasificacion: initialData?.clasificacion || "incidencia",
       tipo_mantenimiento: initialData?.tipo_mantenimiento || "correctivo",
       descripcion_solucion: initialData?.descripcion_solucion || "",
+      asignado_a: initialData?.asignado_a || "",
+      tiempo_solucion: initialData?.tiempo_solucion || "",
     }),
     [initialData],
   );
@@ -17,6 +19,8 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
   const [clasificacion, setClasificacion] = useState(defaults.clasificacion);
   const [tipoMantenimiento, setTipoMantenimiento] = useState(defaults.tipo_mantenimiento);
   const [descripcionSolucion, setDescripcionSolucion] = useState(defaults.descripcion_solucion);
+  const [asignadoA, setAsignadoA] = useState(defaults.asignado_a);
+  const [tiempoSolucion, setTiempoSolucion] = useState(defaults.tiempo_solucion);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
 
@@ -29,6 +33,8 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
     setClasificacion(defaults.clasificacion);
     setTipoMantenimiento(defaults.tipo_mantenimiento);
     setDescripcionSolucion(defaults.descripcion_solucion);
+    setAsignadoA(defaults.asignado_a);
+    setTiempoSolucion(defaults.tiempo_solucion);
   }, [defaults]);
 
   const handleSubmit = async (e) => {
@@ -45,6 +51,8 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
 
     if (canEditSolucion) {
       payload.descripcion_solucion = descripcionSolucion.trim() || undefined;
+      payload.asignado_a = asignadoA.trim() || undefined;
+      payload.tiempo_solucion = tiempoSolucion.trim() || undefined;
     }
 
     const ok = await onSave(payload);
@@ -57,6 +65,8 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
         setClasificacion("incidencia");
         setTipoMantenimiento("correctivo");
         setDescripcionSolucion("");
+        setAsignadoA("");
+        setTiempoSolucion("");
       }
     }
 
@@ -116,15 +126,39 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
         </div>
 
         {canEditSolucion && (
-          <div>
-            <label className="text-sm text-gray-700 block mb-1">Descripcion de la solucion (opcional)</label>
-            <textarea
-              value={descripcionSolucion}
-              onChange={(e) => setDescripcionSolucion(e.target.value)}
-              placeholder="Describe como se soluciono esta incidencia"
-              className="w-full border p-2 rounded"
-              rows={3}
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="md:col-span-2">
+              <label className="text-sm text-gray-700 block mb-1">Descripcion de la solucion (opcional)</label>
+              <textarea
+                value={descripcionSolucion}
+                onChange={(e) => setDescripcionSolucion(e.target.value)}
+                placeholder="Describe como se soluciono esta incidencia"
+                className="w-full border p-2 rounded"
+                rows={3}
+              />
+            </div>
+
+            <div>
+              <label className="text-sm text-gray-700 block mb-1">Asignado a (opcional)</label>
+              <input
+                type="text"
+                value={asignadoA}
+                onChange={(e) => setAsignadoA(e.target.value)}
+                placeholder="Nombre de la persona asignada"
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
+
+            <div>
+              <label className="text-sm text-gray-700 block mb-1">Tiempo de solucion (opcional)</label>
+              <input
+                type="text"
+                value={tiempoSolucion}
+                onChange={(e) => setTiempoSolucion(e.target.value)}
+                placeholder="Ej: 2h 30m"
+                className="w-full border rounded px-3 py-2"
+              />
+            </div>
           </div>
         )}
 
