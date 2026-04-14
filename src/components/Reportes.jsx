@@ -11,6 +11,16 @@ function EstadoBadge({ estado, color }) {
   );
 }
 
+function formatDateTime(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleString("es-BO", {
+    timeZone: "America/La_Paz",
+    hour12: false,
+  });
+}
+
 function Reportes({
   reportes,
   reportRange,
@@ -154,8 +164,8 @@ function Reportes({
                   </td>
                   <td className="p-2">{item.descripcion_solucion || "-"}</td>
                   <td className="p-2">{item.tiempo_solucion || "-"}</td>
-                  <td className="p-2">{item.fecha_creacion}</td>
-                  <td className="p-2">{item.fecha_actualizacion}</td>
+                  <td className="p-2">{formatDateTime(item.fecha_creacion)}</td>
+                  <td className="p-2">{formatDateTime(item.fecha_actualizacion)}</td>
                 </tr>
               ))}
             </tbody>

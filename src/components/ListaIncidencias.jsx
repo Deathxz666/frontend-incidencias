@@ -9,6 +9,16 @@ function getFullName(usuario) {
   return fullName || usuario.email || "-";
 }
 
+function formatDateTime(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleString("es-BO", {
+    timeZone: "America/La_Paz",
+    hour12: false,
+  });
+}
+
 function EstadoBadge({ estado }) {
   const color = estado?.color || "#6B7280";
   return (
@@ -184,8 +194,8 @@ function ListaIncidencias({
                   <td className="p-2">{inc.asignado_a || "-"}</td>
                   <td className="p-2 max-w-sm">{inc.descripcion_solucion || "-"}</td>
                   <td className="p-2">{inc.tiempo_solucion || "-"}</td>
-                  <td className="p-2">{inc.fecha_creacion ? new Date(inc.fecha_creacion).toLocaleString() : "-"}</td>
-                  <td className="p-2">{inc.fecha_actualizacion ? new Date(inc.fecha_actualizacion).toLocaleString() : "-"}</td>
+                  <td className="p-2">{formatDateTime(inc.fecha_creacion)}</td>
+                  <td className="p-2">{formatDateTime(inc.fecha_actualizacion)}</td>
                   <td className="p-2">
                     <div className="flex gap-3">
                       <button onClick={() => onEdit(inc)} className="text-blue-600 hover:underline">

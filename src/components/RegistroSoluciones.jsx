@@ -20,6 +20,16 @@ function getFullName(usuario) {
   return fullName || usuario.email || "-";
 }
 
+function formatDateTime(value) {
+  if (!value) return "-";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "-";
+  return date.toLocaleString("es-BO", {
+    timeZone: "America/La_Paz",
+    hour12: false,
+  });
+}
+
 function RegistroSoluciones({ incidencias, meta, onSearch, onPageChange }) {
   return (
     <div className="bg-white p-4 md:p-6 rounded-xl shadow">
@@ -62,8 +72,8 @@ function RegistroSoluciones({ incidencias, meta, onSearch, onPageChange }) {
                   <td className="p-2">{inc.asignado_a || "-"}</td>
                   <td className="p-2">{inc.descripcion_solucion || "-"}</td>
                   <td className="p-2">{inc.tiempo_solucion || "-"}</td>
-                  <td className="p-2">{inc.fecha_creacion ? new Date(inc.fecha_creacion).toLocaleString() : "-"}</td>
-                  <td className="p-2">{inc.fecha_actualizacion ? new Date(inc.fecha_actualizacion).toLocaleString() : "-"}</td>
+                  <td className="p-2">{formatDateTime(inc.fecha_creacion)}</td>
+                  <td className="p-2">{formatDateTime(inc.fecha_actualizacion)}</td>
                 </tr>
               ))}
             </tbody>
