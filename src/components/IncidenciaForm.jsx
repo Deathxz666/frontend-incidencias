@@ -139,7 +139,7 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
             </div>
 
             <div>
-              <label className="text-sm text-gray-700 block mb-1">Asignado a (opcional)</label>
+              <label className="text-sm text-gray-700 block mb-1">Asignado a</label>
               <input
                 type="text"
                 value={asignadoA}
@@ -150,7 +150,7 @@ function IncidenciaForm({ onSave, mode = "create", initialData = null, onCancel,
             </div>
 
             <div>
-              <label className="text-sm text-gray-700 block mb-1">Tiempo de solucion (opcional)</label>
+              <label className="text-sm text-gray-700 block mb-1">Tiempo de solucion</label>
               <input
                 type="text"
                 value={tiempoSolucion}
